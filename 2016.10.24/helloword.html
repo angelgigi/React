@@ -104,7 +104,7 @@
    ReactDOM.render(
            <MyTitle title={data} />,
            document.getElementById('example')
-   );*/
+   );
     //getDefaultProps 方法可以用来设置组件属性的默认值
    var MyTitle = React.createClass({
        getDefaultProps : function () {
@@ -122,6 +122,47 @@
            <MyTitle />,
            document.getElementById('example')
    );
+   //获取真实的DOM节点 rel
+    var MyComponent = React.createClass({
+        handleClick:function () {
+            this.refs.myTextInput.focus();
+        },
+        render:function () {
+            return(
+                    <div>
+                      <input type="text" ref="myTextInput"/>
+                        <input type="button" value="Focus the text input" onClick={this.handleClick} />
+                    </div>
+
+            )
+        }
+    });
+    ReactDOM.render(
+            <MyComponent/>,
+            document.getElementById('example')
+    )
+   //this.setState 方法就修改状态值，每次修改以后，自动调用 this.render 方法，再次渲染组件。
+   var LikeButton = React.createClass({
+       getInitialState: function() {
+           return {liked: false};
+       },
+       handleClick: function(event) {
+           this.setState({liked: !this.state.liked});
+       },
+       render: function() {
+           var text = this.state.liked ? 'like' : 'haven\'t liked';
+           return (
+                   <p onClick={this.handleClick}>
+                       You {text} this. Click to toggle.
+                   </p>
+           );
+       }
+   });
+
+   ReactDOM.render(
+           <LikeButton />,
+           document.getElementById('example')
+   );*/
 </script>
 </body>
 </html>
