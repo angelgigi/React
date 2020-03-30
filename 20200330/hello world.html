@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>hello world</title>
+  <script src="../build/react.development.js"></script>
+  <script src="../build/react-dom.development.js"></script>
+  <script src="../build/babel.min.js"></script>
+  <script src="../build/prop-types.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+</body>
+<script type="text/babel">
+  /*ReactDOM.render(
+      <h1>Hello World</h1>,
+      document.getElementById('example'),
+  );*/
+  //JSX语法 map遍历
+ /* var names = ['Alice', 'Emily', 'Kate'];
+  ReactDOM.render(
+      <div>
+        {
+          names.map(function (name,index) {
+            return <div key={index}>Hello,{name}!</div>
+          })
+        }
+      </div>,
+      document.getElementById('example')
+  );*/
+  //组件
+  //React 16 已经没有React.createClass方法，而用一个包 create-react-class 来代替。
+  // 官方更加推荐 class Component extends React.PureComponent的写法。
+  /*var HelloMessage = React.createClass({
+    render:function () {
+      return <h1>Hello {this.props.name}</h1>
+    }
+  });*/
+  // ES6 class来定义一个组件
+  /*class HelloMessage extends React.Component{
+    render(){
+      return <h1>Hello {this.props.name}</h1>
+    }
+  }
+  ReactDOM.render(
+      <HelloMessage name="John" />,
+      document.getElementById('example')
+  );*/
+  // const 用户自定义组件
+  /*function HelloMessage(props) {
+    return <h1>Hello {props.name}!</h1>;
+  }
+  const element = <HelloMessage name="Kavid" />;
+  ReactDOM.render(
+      element,
+      document.getElementById('example')
+  );*/
+  //this.props.children 表示组件的所有子节点
+ /* class NoteList extends React.Component{
+    render(){
+      return (
+          <ol>
+            {
+                React.Children.map(this.props.children,function (child) {
+                  return <li>{child}</li>
+                })
+            }
+          </ol>
+      )
+    }
+  }
+  ReactDOM.render(
+     <NoteList>
+       <span>hello</span>
+       <span>world</span>
+     </NoteList>,
+      document.getElementById('example')
+  );*/
+  //PropTypes属性：用来验证组件实例的属性是否符合要求
+  var data = 123;
+  class MyTitle extends React.Component{
+    static propTypes = {
+      title:PropTypes.string.isRequired
+    };
+    render(){
+      return <h1>{this.props.title}</h1>
+    }
+  }
+  ReactDOM.render(
+      <MyTitle title={data} />,
+      document.getElementById('example')
+  )
+</script>
+</html>
