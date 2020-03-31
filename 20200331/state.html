@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>demo7-13</title>
+  <script src="../build/react.development.js"></script>
+  <script src="../build/react-dom.development.js"></script>
+  <script src="../build/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+</body>
+<script type="text/babel">
+  //ref属性获取真实DOM节点
+  /*class MyComponent extends React.Component {
+    constructor(props) {
+      super(props); //调用父类的constructor(props)super关键字 表示父类的构造函数
+      this.myTextInput = React.createRef();
+      this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick() {
+      this.myTextInput.current.focus()
+    }
+
+    render() {
+      return (
+          <div>
+            <input type="text" ref={this.myTextInput}/>
+            <input type="button" value="Focus the text input" onClick={this.handleClick}/>
+          </div>
+      )
+    }
+  }*/
+  //this.state是会随着用户互动而产生变化的特性
+  /*class LikeButton extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = { liked:false };
+      this.handleClick = this.handleClick.bind(this)
+    }
+    handleClick(event){
+      this.setState( {liked:!this.state.liked} );
+    }
+    render(){
+      const text = this.state.liked ? 'like':'haven\'t liked';
+      return (
+          <p onClick={ this.handleClick }>
+              You {text} this. Click to toggle
+          </p>
+      )
+    }
+  }*/
+  class Clock extends React.Component {
+    constructor(props){
+      super(props);
+      this.state = { date:new Date()}
+    }
+    render() {
+      return (
+          <div>
+            <h1>现在是{this.state.date.toLocaleTimeString()}</h1>
+          </div>
+      )
+    }
+  }
+  ReactDOM.render(
+      //<MyComponent />,
+      //<LikeButton />,
+      <Clock />,
+      document.getElementById('example')
+  );
+</script>
+</html>
