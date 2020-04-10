@@ -2,6 +2,7 @@
  * Created by angelqiqi on 2020/4/8.
  */
 import React, { Component , Fragment} from 'react';
+import './style.css'
 
 class TodoList extends Component {
 
@@ -15,13 +16,18 @@ class TodoList extends Component {
   render(){
     return(
       <Fragment>
+        {/*大写开头是组件*/}
         <div>
-          <input value={this.state.inputValue} onChange={this.handleInputClick.bind(this)} />
+          <label htmlFor="inserArea">输入内容</label>
+          <input className="input" value={this.state.inputValue} onChange={this.handleInputClick.bind(this)} />
           <button onClick={this.handleBtnClick.bind(this)}>提交</button>
         </div>
         <ul>
           {this.state.list.map((item,index) =>{
-            return <li key={index} onClick={this.handleItemDelete.bind(this,index)}>{item}</li>
+            return <li key={index}
+                       onClick={this.handleItemDelete.bind(this,index)}
+                       dangerouslySetInnerHTML = {{__html:item}}
+            ></li>
           })}
         </ul>
       </Fragment>
