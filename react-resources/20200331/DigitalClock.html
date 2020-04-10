@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>钟表</title>
+  <script src="../build/react.development.js"></script>
+  <script src="../build/react-dom.development.js"></script>
+  <script src="../build/babel.min.js"></script>
+</head>
+<body>
+<div id="clock"></div>
+</body>
+<script type="text/babel">
+  class DigitalClock extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        date: new Date()
+      }
+    }
+    componentDidMount() {
+      this.timer = setInterval(() => {
+        this.setState({
+          date: new Date()
+        })
+      }, 3000)
+    }
+    componentDidUpdate(currentProps,currentState){
+      console.log(currentState)
+    }
+    componentWillUnmount(){
+      clearInterval(this.timer)
+    }
+    render() {
+      return (
+          <div>
+            <h1>{this.state.date.toLocaleTimeString()}</h1>
+          </div>
+      )
+    }
+  }
+  ReactDOM.render(
+      <DigitalClock />,
+      document.getElementById("clock")
+  )
+</script>
+</html>
